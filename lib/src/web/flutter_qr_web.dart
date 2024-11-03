@@ -8,9 +8,9 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 
-import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:qr_code_scanner/src/web/jsqr.dart';
-import 'package:qr_code_scanner/src/web/media.dart';
+import 'package:custom_qr_code_scanner/custom_qr_code_scanner.dart';
+import 'package:custom_qr_code_scanner/src/web/jsqr.dart';
+import 'package:custom_qr_code_scanner/src/web/media.dart';
 
 /// Even though it has been highly modified, the origial implementation has been
 /// adopted from https://github.com:treeder/jsqr_flutter

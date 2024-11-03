@@ -1,4 +1,4 @@
-export 'src/qr_code_scanner.dart';
+export 'src/custom_qr_code_scanner.dart';
 export 'src/qr_scanner_overlay_shape.dart';
 export 'src/types/barcode.dart';
 export 'src/types/barcode_format.dart';

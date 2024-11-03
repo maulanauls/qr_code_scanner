@@ -70,107 +70,108 @@ class QrScannerOverlayShape extends ShapeBorder {
   }
 
   @override
-  void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {
-    final width = rect.width;
-    final borderWidthSize = width / 2;
-    final height = rect.height;
-    final borderOffset = borderWidth / 2;
-    final borderLength =
-        borderLength > min(cutOutHeight, cutOutHeight) / 2 + borderWidth * 2
-            ? borderWidthSize / 2
-            : borderLength;
-    final cutOutWidth =
-        cutOutWidth < width ? cutOutWidth : width - borderOffset;
-    final cutOutHeight =
-        cutOutHeight < height ? cutOutHeight : height - borderOffset;
+void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {
+  final double width = rect.width;
+  final double height = rect.height;
+  final double borderOffset = borderWidth / 2;
+  
+  // Adjusted border length based on cutOut dimensions
+  final double adjustedBorderLength = borderLength > min(cutOutHeight, cutOutWidth) / 2 + borderWidth * 2
+      ? width / 4
+      : borderLength;
+  
+  // Calculated cutout width and height based on constraints
+  final double calculatedCutOutWidth = cutOutWidth < width ? cutOutWidth : width - borderOffset;
+  final double calculatedCutOutHeight = cutOutHeight < height ? cutOutHeight : height - borderOffset;
 
-    final backgroundPaint = Paint()
-      ..color = overlayColor
-      ..style = PaintingStyle.fill;
+  final backgroundPaint = Paint()
+    ..color = overlayColor
+    ..style = PaintingStyle.fill;
 
-    final borderPaint = Paint()
-      ..color = borderColor
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = borderWidth;
+  final borderPaint = Paint()
+    ..color = borderColor
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = borderWidth;
 
-    final boxPaint = Paint()
-      ..color = borderColor
-      ..style = PaintingStyle.fill
-      ..blendMode = BlendMode.dstOut;
+  final boxPaint = Paint()
+    ..color = borderColor
+    ..style = PaintingStyle.fill
+    ..blendMode = BlendMode.dstOut;
 
-    final cutOutRect = Rect.fromLTWH(
-      rect.left + width / 2 - cutOutWidth / 2 + borderOffset,
-      -cutOutBottomOffset +
-          rect.top +
-          height / 2 -
-          cutOutHeight / 2 +
-          borderOffset,
-      cutOutWidth - borderOffset * 2,
-      cutOutHeight - borderOffset * 2,
-    );
+  final cutOutRect = Rect.fromLTWH(
+    rect.left + width / 2 - calculatedCutOutWidth / 2 + borderOffset,
+    -cutOutBottomOffset +
+        rect.top +
+        height / 2 -
+        calculatedCutOutHeight / 2 +
+        borderOffset,
+    calculatedCutOutWidth - borderOffset * 2,
+    calculatedCutOutHeight - borderOffset * 2,
+  );
 
-    canvas
-      ..saveLayer(
-        rect,
-        backgroundPaint,
-      )
-      ..drawRect(
-        rect,
-        backgroundPaint,
-      )
-      // Draw top right corner
-      ..drawRRect(
-        RRect.fromLTRBAndCorners(
-          cutOutRect.right - borderLength,
-          cutOutRect.top,
-          cutOutRect.right,
-          cutOutRect.top + borderLength,
-          topRight: Radius.circular(borderRadius),
-        ),
-        borderPaint,
-      )
-      // Draw top left corner
-      ..drawRRect(
-        RRect.fromLTRBAndCorners(
-          cutOutRect.left,
-          cutOutRect.top,
-          cutOutRect.left + borderLength,
-          cutOutRect.top + borderLength,
-          topLeft: Radius.circular(borderRadius),
-        ),
-        borderPaint,
-      )
-      // Draw bottom right corner
-      ..drawRRect(
-        RRect.fromLTRBAndCorners(
-          cutOutRect.right - borderLength,
-          cutOutRect.bottom - borderLength,
-          cutOutRect.right,
-          cutOutRect.bottom,
-          bottomRight: Radius.circular(borderRadius),
-        ),
-        borderPaint,
-      )
-      // Draw bottom left corner
-      ..drawRRect(
-        RRect.fromLTRBAndCorners(
-          cutOutRect.left,
-          cutOutRect.bottom - borderLength,
-          cutOutRect.left + borderLength,
-          cutOutRect.bottom,
-          bottomLeft: Radius.circular(borderRadius),
-        ),
-        borderPaint,
-      )
-      ..drawRRect(
-        RRect.fromRectAndRadius(
-          cutOutRect,
-          Radius.circular(borderRadius),
-        ),
-        boxPaint,
-      )
-      ..restore();
+  canvas
+    ..saveLayer(
+      rect,
+      backgroundPaint,
+    )
+    ..drawRect(
+      rect,
+      backgroundPaint,
+    )
+    // Draw top right corner
+    ..drawRRect(
+      RRect.fromLTRBAndCorners(
+        cutOutRect.right - adjustedBorderLength,
+        cutOutRect.top,
+        cutOutRect.right,
+        cutOutRect.top + adjustedBorderLength,
+        topRight: Radius.circular(borderRadius),
+      ),
+      borderPaint,
+    )
+    // Draw top left corner
+    ..drawRRect(
+      RRect.fromLTRBAndCorners(
+        cutOutRect.left,
+        cutOutRect.top,
+        cutOutRect.left + adjustedBorderLength,
+        cutOutRect.top + adjustedBorderLength,
+        topLeft: Radius.circular(borderRadius),
+      ),
+      borderPaint,
+    )
+    // Draw bottom right corner
+    ..drawRRect(
+      RRect.fromLTRBAndCorners(
+        cutOutRect.right - adjustedBorderLength,
+        cutOutRect.bottom - adjustedBorderLength,
+        cutOutRect.right,
+        cutOutRect.bottom,
+        bottomRight: Radius.circular(borderRadius),
+      ),
+      borderPaint,
+    )
+    // Draw bottom left corner
+    ..drawRRect(
+      RRect.fromLTRBAndCorners(
+        cutOutRect.left,
+        cutOutRect.bottom - adjustedBorderLength,
+        cutOutRect.left + adjustedBorderLength,
+        cutOutRect.bottom,
+        bottomLeft: Radius.circular(borderRadius),
+      ),
+      borderPaint,
+    )
+    ..drawRRect(
+      RRect.fromRectAndRadius(
+        cutOutRect,
+        Radius.circular(borderRadius),
+      ),
+      boxPaint,
+    )
+    ..restore();
   }
+  
 
   @override
   ShapeBorder scale(double t) {

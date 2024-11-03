@@ -1,4 +1,4 @@
-import 'package:qr_code_scanner/src/types/barcode_format.dart';
+import 'package:custom_qr_code_scanner/src/types/barcode_format.dart';
 
 /// The [Barcode] object holds information about the barcode or qr code.
 ///
