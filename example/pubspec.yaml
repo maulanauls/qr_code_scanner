@@ -1,4 +1,4 @@
-name: custom_qr_code_scanner_example
+name: qr_code_scanner_example
 description: Demonstrates how to use the flutter_qr plugin.
 publish_to: 'none'
 
@@ -15,7 +15,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  custom_qr_code_scanner:
+  qr_code_scanner:
     path: ../
 
 # For information on the generic Dart part of this file, see the

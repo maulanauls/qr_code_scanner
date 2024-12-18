@@ -4,14 +4,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:custom_qr_code_scanner/src/lifecycle_event_handler.dart';
-import 'package:custom_qr_code_scanner/src/qr_scanner_overlay_shape.dart';
-import 'package:custom_qr_code_scanner/src/types/barcode.dart';
-import 'package:custom_qr_code_scanner/src/types/barcode_format.dart';
-import 'package:custom_qr_code_scanner/src/types/camera.dart';
-import 'package:custom_qr_code_scanner/src/types/camera_exception.dart';
-import 'package:custom_qr_code_scanner/src/types/features.dart';
-import 'package:custom_qr_code_scanner/src/web/flutter_qr_stub.dart'
+import 'package:qr_code_scanner/src/lifecycle_event_handler.dart';
+import 'package:qr_code_scanner/src/qr_scanner_overlay_shape.dart';
+import 'package:qr_code_scanner/src/types/barcode.dart';
+import 'package:qr_code_scanner/src/types/barcode_format.dart';
+import 'package:qr_code_scanner/src/types/camera.dart';
+import 'package:qr_code_scanner/src/types/camera_exception.dart';
+import 'package:qr_code_scanner/src/types/features.dart';
+import 'package:qr_code_scanner/src/web/flutter_qr_stub.dart'
 // ignore: uri_does_not_exist
     if (dart.library.html) 'web/flutter_qr_web.dart';
 
