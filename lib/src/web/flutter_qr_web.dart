@@ -134,7 +134,7 @@ class _WebQrViewState extends State<WebQrView> {
       }
       final stream = await promiseToFuture(getUserMedia(constraints));
       widget.onPermissionSet?.call(_controller!, true);
-      _localStream = stream;
+      _localStream = stream as html.MediaStream;
       video.srcObject = _localStream;
       video.setAttribute('playsinline',
           'true',); // required to tell iOS safari we don't want fullscreen
@@ -324,7 +324,7 @@ class QRViewControllerWeb implements QRViewController {
 }
 
 Widget createWebQrView(
-        {onPlatformViewCreated, onPermissionSet, CameraFacing? cameraFacing,}) =>
+        {required QRViewCreatedCallback onPlatformViewCreated, PermissionSetCallback? onPermissionSet, CameraFacing? cameraFacing,}) =>
     WebQrView(
       onPlatformViewCreated: onPlatformViewCreated,
       onPermissionSet: onPermissionSet,
