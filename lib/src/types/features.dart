@@ -3,9 +3,10 @@ class SystemFeatures {
 
   factory SystemFeatures.fromJson(Map<String, dynamic> features) =>
       SystemFeatures(
-          features['hasFlash'] ?? false,
-          features['hasBackCamera'] ?? false,
-          features['hasFrontCamera'] ?? false);
+        features['hasFlash'] as bool? ?? false,
+        features['hasBackCamera'] as bool? ?? false,
+        features['hasFrontCamera'] as bool? ?? false,
+      );
 
   final bool hasFlash;
   final bool hasFrontCamera;
